@@ -5,6 +5,27 @@ O projeto foi construído como parte de um **estudo prático de Front-end**, com
 
 ---
 
+<!-- ===== FRONTEND ===== -->
+<strong>Frontend:</strong><br>
+<img src="https://img.shields.io/badge/HTML5-Estrutura%20Web-red?logo=html5&logoColor=white"/>
+<img src="https://img.shields.io/badge/CSS3-Estilização-blue?logo=css3&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-Funcionalidade-yellow?logo=javascript&logoColor=black"/>
+
+<!-- ===== LAYOUT & RESPONSIVIDADE ===== -->
+<strong>Layout & Responsividade:</strong><br>
+<img src="https://img.shields.io/badge/Responsive-Mobile%20Friendly-green"/>
+<img src="https://img.shields.io/badge/Flexbox-Layout-purple"/>
+<img src="https://img.shields.io/badge/Media%20Queries-Responsivo-blue"/>
+
+<!-- ===== FERRAMENTAS & VERSIONAMENTO ===== -->
+<strong>Ferramentas & Versionamento:</strong><br>
+<img src="https://img.shields.io/badge/Git-Versionamento-orange?logo=git&logoColor=white"/>
+<img src="https://img.shields.io/badge/GitHub-Repositório-black?logo=github&logoColor=white"/>
+<img src="https://img.shields.io/badge/VSCode-Editor-blue?logo=visualstudiocode&logoColor=white"/>
+<img src="https://img.shields.io/badge/Live%20Server-Testes-red?logo=html5&logoColor=white"/>
+
+---
+
 ## 🎯 Funcionalidades
 
 * ⏰ **Timer regressivo** com três modos:
