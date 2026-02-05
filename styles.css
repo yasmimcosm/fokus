@@ -39,6 +39,7 @@
         background: url("/imagens/pattern.png");
         background-size: cover;
         background-repeat: no-repeat;
+        background-position: center bottom;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -354,7 +355,7 @@
 
     .app__form-textarea,
     .app__form-textarea::placeholder {
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-style: normal;
         font-weight: 400;
         line-height: 150%;
@@ -456,7 +457,7 @@
     .app__form-label {
         color: var(--azul-profundo);
         font-family: Unbounded;
-        font-size: 2.6rem;
+        font-size: 2rem;
         font-style: normal;
         font-weight: 400;
         line-height: 120%;
@@ -492,7 +493,7 @@
         align-items: center;
         color: var(--azul-profundo);
         font-family: Montserrat;
-        font-size: 1.8rem;
+        font-size: 1.3rem;
         font-style: normal;
         font-weight: 600;
         line-height: 150%;
@@ -539,5 +540,9 @@
 
     .app__footer {
         margin-top: 15rem;
+    }
+
+    .app__footer-text {
+        font-size: 1.2rem;
     }
 

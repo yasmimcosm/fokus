@@ -5,18 +5,42 @@
     const ulTarefas = document.querySelector('.app__section-task-list')
     const listaTarefasAtivas = document.querySelector('.app__section-active-task-description')
 
-
     const btnRemoverConcluidas = document.querySelector('#btn-remover-concluidas')
     const btnRemoverTodas = document.querySelector('#btn-remover-todas')
-    const btnAlterarEstado = document.querySelector('.app__section-task-header__li__button')
+
+    const btnCancelar = document.querySelector('.app__form-footer__button--cancel')
+    const btnApagar = document.querySelector('.app__form-footer__button--delete')
+
+    // ESTADO
 
     let tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
-    let tarefaSelecionada = null
-    let liTarefaSelecionada = null
 
-    function atualizarTarefas () {
+    // LOCAL STORAGE
+
+    function atualizarTarefas() {
         localStorage.setItem('tarefas', JSON.stringify(tarefas))
     }
+
+    // LISTA "EM ANDAMENTO"
+    
+    function atualizarListaEmAndamento() {
+        listaTarefasAtivas.innerHTML = ''
+
+        const ativas = tarefas.filter(tarefa => !tarefa.completa)
+
+        if (ativas.length === 0) {
+            listaTarefasAtivas.innerHTML = ''
+            return
+        }
+
+        ativas.forEach(tarefa => {
+            const li = document.createElement('li')
+            li.textContent = tarefa.descricao
+            listaTarefasAtivas.appendChild(li)
+        })
+    }
+
+    // CRIAR TAREFA
 
     function criarElementoTarefa(tarefa) {
         const li = document.createElement('li')
@@ -40,17 +64,12 @@
 
         botao.onclick = (e) => {
             e.stopPropagation()
-            const novaDescricao = prompt("Qual é o novo nome da tarefa?")
+            const novaDescricao = prompt('Qual é o novo nome da tarefa?')
             if (novaDescricao) {
                 tarefa.descricao = novaDescricao
                 paragrafo.textContent = novaDescricao
-
-                // se essa tarefa estiver ativa, atualiza o texto em andamento
-                if (!tarefa.completa) {
-                    listaTarefasAtivas.textContent = novaDescricao
-                }
-
                 atualizarTarefas()
+                atualizarListaEmAndamento()
             }
         }
 
@@ -68,92 +87,99 @@
 
             if (tarefa.completa) {
                 botao.setAttribute('disabled', 'disabled')
-
-                // só limpa "em andamento" se for essa tarefa
-                if (listaTarefasAtivas.textContent === tarefa.descricao) {
-                    listaTarefasAtivas.textContent = ''
-                }
             } else {
                 botao.removeAttribute('disabled')
-                listaTarefasAtivas.textContent = tarefa.descricao
             }
         }
 
-            li.onclick = () => {
-                tarefa.completa = !tarefa.completa
-                atualizarVisual()
-                atualizarTarefas()
-                atualizarListaEmAndamento()
-            }
-
-            
+        li.onclick = () => {
+            tarefa.completa = !tarefa.completa
             atualizarVisual()
+            atualizarTarefas()
             atualizarListaEmAndamento()
-            return li
+        }
+
+        atualizarVisual()
+        return li
     }
 
+    // EVENTOS
 
+    // abrir / fechar formulário
     btnAdicionarTarefa.addEventListener('click', () => {
         formAdicionarTarefa.classList.toggle('hidden')
     })
 
+    // salvar tarefa
     formAdicionarTarefa.addEventListener('submit', (evento) => {
-        evento.preventDefault();
+        evento.preventDefault()
+
+        if (!textarea.value.trim()) return
+
         const tarefa = {
             descricao: textarea.value,
             completa: false
         }
 
         tarefas.push(tarefa)
+
         const elementoTarefa = criarElementoTarefa(tarefa)
         ulTarefas.append(elementoTarefa)
+
         atualizarTarefas()
+        atualizarListaEmAndamento()
+
         textarea.value = ''
         formAdicionarTarefa.classList.add('hidden')
     })
 
-    tarefas.forEach(tarefa => {
-        const elementoTarefa = criarElementoTarefa(tarefa)
-        ulTarefas.append(elementoTarefa)
-    });
+    // cancelar
+    btnCancelar.addEventListener('click', () => {
+        textarea.value = ''
+        formAdicionarTarefa.classList.add('hidden')
+    })
 
-    // document.addEventListener('FocoFinalizado', () => {
-    //     if (tarefaSelecionada && liTarefaSelecionada) {
-    //         liTarefaSelecionada.classList.remove('app__section-task-list-item-active')
-    //         liTarefaSelecionada.classList.add('app__section-task-list-item-complete')
-    //         liTarefaSelecionada.querySelector('button').setAttribute('disabled', 'disabled')
-    //         tarefaSelecionada.completa = true
-    //         atualizarTarefas()
-    //     }
-    // })
+    // apagar texto
+    btnApagar.addEventListener('click', () => {
+        textarea.value = ''
+    })
 
-    const removerTarefas  = (somenteCompletas) => {
-        // const seletor = somenteCompletas ? ".app__section-task-list-item-complete" : ".app__section-task-list-item"
-        let seletor =  ".app__section-task-list-item"
+    // remover tarefas
+    const removerTarefas = (somenteCompletas) => {
+        let seletor = '.app__section-task-list-item'
         if (somenteCompletas) {
-            seletor = ".app__section-task-list-item-complete"
+            seletor = '.app__section-task-list-item-complete'
         }
-        document.querySelectorAll(seletor).forEach(elemento => {
-            elemento.remove()
-        })
-        tarefas = somenteCompletas ? tarefas.filter(tarefa => !tarefa.completa) : []
+
+        document.querySelectorAll(seletor).forEach(el => el.remove())
+
+        tarefas = somenteCompletas
+            ? tarefas.filter(tarefa => !tarefa.completa)
+            : []
+
         atualizarTarefas()
         atualizarListaEmAndamento()
-
     }
 
     btnRemoverConcluidas.onclick = () => removerTarefas(true)
     btnRemoverTodas.onclick = () => removerTarefas(false)
 
-    
-    function atualizarListaEmAndamento() {
-    listaTarefasAtivas.innerHTML = ''
 
-    tarefas
-        .filter(tarefa => !tarefa.completa)
-        .forEach(tarefa => {
-            const li = document.createElement('li')
-            li.textContent = tarefa.descricao
-            listaTarefasAtivas.appendChild(li)
-        })
-}
+    // INICIALIZAÇÃO
+    tarefas.forEach(tarefa => {
+        const elementoTarefa = criarElementoTarefa(tarefa)
+        ulTarefas.append(elementoTarefa)
+    })
+
+    // cancelar formulário
+    btnCancelar.addEventListener('click', () => {
+        textarea.value = ''
+        formAdicionarTarefa.classList.add('hidden')
+    })
+
+    // apagar texto digitado
+    btnApagar.addEventListener('click', () => {
+        textarea.value = ''
+    })
+
+    atualizarListaEmAndamento()
