@@ -163,12 +163,13 @@
     }
 
     .app__footer {
+        margin-top: 15rem;
         display: flex;
         width: 100%;
         padding: 2.8rem 6rem;
         justify-content: center;
         align-items: center;
-        background: #010B15;
+        background: rgba(8, 3, 31, 0.6);
     }
 
     .app__footer-text {
@@ -286,6 +287,26 @@
 
     /* Para Celulares */
     @media (max-width: 767px) {
+
+        body {
+            min-height: 100vh;
+            background: 
+            linear-gradient(
+                120deg,
+                rgba(8, 3, 31, 0.6),
+                rgba(9, 0, 18, 0.6)
+            ),
+
+            repeating-linear-gradient(
+                45deg,
+                rgba(255,255,255,0.03),
+                rgba(255,255,255,0.03) 1px,
+                transparent 1px,
+                transparent 6px
+                );
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
         .app__section-banner-container {
             width: 32rem;
         }
@@ -511,3 +532,12 @@
         opacity: 0.8;
         cursor: not-allowed;
     }
+
+    .app__section-task-list-item-complete {
+        background-color: rgba(0, 244, 191, 0.40);
+    }
+
+    .app__footer {
+        margin-top: 15rem;
+    }
+
