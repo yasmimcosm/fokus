@@ -59,6 +59,7 @@ O projeto foi construído como parte de um **estudo prático de Front-end**, com
 ├── index.html
 ├── styles.css
 ├── script.js
+├── script-crud.js
 └── README.md
 ```
 
