@@ -121,5 +121,3 @@ O código foi implementado como exercício prático de aprendizado e consolidaç
 
 Projeto desenvolvido por **Yasmim Silva Cosme**
 Estudante de Front-end • HTML • CSS • JavaScript ✨
-* adaptar pra **LinkedIn / currículo**
-* ou escrever uma versão **100% em inglês** 🇺🇸💼
