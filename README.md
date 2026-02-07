@@ -9,7 +9,7 @@ O projeto foi construído como parte de um **estudo prático de Front-end**, com
 <strong>Frontend:</strong><br>
 <img src="https://img.shields.io/badge/HTML5-Estrutura%20Web-red?logo=html5&logoColor=white"/>
 <img src="https://img.shields.io/badge/CSS3-Estilização-blue?logo=css3&logoColor=white"/>
-<img src="https://img.shields.io/badge/JavaScript-Funcionalidade-yellow?logo=javascript&logoColor=black"/>
+<img src="https://img.shields.io/badge/JavaScript-Funcionalidade-yellow?logo=javascript&logoColor=white"/>
 
 <!-- ===== LAYOUT & RESPONSIVIDADE ===== -->
 <strong>Layout & Responsividade:</strong><br>
